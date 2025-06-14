@@ -17,17 +17,17 @@ The applications here are ..
 
 Example Basic Usage:
 
-# Create a vector database from Reddit posts, assuming you have create a sub direcory ./vdb
+## Create a vector database from Reddit posts, assuming you have create a sub direcory ./vdb
 
 **python enviro_bot_agents.py create --search="gas prices" --vdb="./vdb/my_gas_vdb"**
 
-# Chat with the vector database
+## Chat with the vector database
 
 **streamlit run enviro_bot_chat.py -- --vdb="./vdb/my_gas_vdb"**
 
 ![Diagram](example_picture.png)
 
-Setup:
+##Setup:
 Note this application was developed with Ubuntu on a high performance computer 
 2× AMD EPYC 7702 CPUs (128 cores, 256 threads total) and 7× NVIDIA A100 PCIe 80GB GPUs.
 Similar performance may be required for database creation with classification, and batch evaluation.
@@ -53,20 +53,20 @@ REDDIT_USERNAME=***************************
 
 REDDIT_PASSWORD=***************************
 
-Advanced Usage:
+##Advanced Usage:
 
-# Evaluation metrics generation
+### Evaluation metrics generation
 
-python enviro_bot_agents.py evaluate --vdb="./vdb/my_gas_vdb" --out_file="gas_eval" --samples=10
+**python enviro_bot_agents.py evaluate --vdb="./vdb/my_gas_vdb" --out_file="gas_eval" --samples=10**
 
-# Pull from the database into an excel file
+### Pull from the database into an excel file
 
-python enviro_bot_agents.py pull --vdb="./vdb/my_gas_vdb"
+**python enviro_bot_agents.py pull --vdb="./vdb/my_gas_vdb"**
 
-# Chat to vector database  from command line with new dummy posts based on a class and classification
-# Though recommended to use enviro_bot_chat.py instead.
+### Chat to vector database  from command line with new dummy posts based on a class and classification
+### Though recommended to use enviro_bot_chat.py instead.
 
-python enviro_bot_agents.py chat --vdb="./vdb/my_gas_vdb" --my_class="Viewpoint" --classification="Left Wing"
+**python enviro_bot_agents.py chat --vdb="./vdb/my_gas_vdb" --my_class="Viewpoint" --classification="Left Wing"**
 
 
 
