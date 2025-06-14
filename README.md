@@ -21,7 +21,7 @@ The applications here are ..
 
 **python enviro_bot_agents.py create --search="gas prices" --vdb="./vdb/my_gas_vdb"**
 
-###Chat with the vector database
+### Chat with the vector database
 
 **streamlit run enviro_bot_chat.py -- --vdb="./vdb/my_gas_vdb"**
 
@@ -57,11 +57,11 @@ REDDIT_PASSWORD=***************************
 
 ### Evaluation metrics generation
 
-**python enviro_bot_agents.py evaluate --vdb="./vdb/my_gas_vdb" --out_file="gas_eval" --samples=10**
+&nbsp;&nbsp;&nbsp;&nbsp;**python enviro_bot_agents.py evaluate --vdb="./vdb/my_gas_vdb" --out_file="gas_eval" --samples=10**
 
 ### Pull from the database into an excel file
 
-**python enviro_bot_agents.py pull --vdb="./vdb/my_gas_vdb"**
+&nbsp;&nbsp;&nbsp;&nbsp;**python enviro_bot_agents.py pull --vdb="./vdb/my_gas_vdb"**
 
 ### Chat to vector database  from command line with new dummy posts based on a class and classification
 ### Though recommended to use enviro_bot_chat.py instead.
