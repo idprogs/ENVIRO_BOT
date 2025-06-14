@@ -53,20 +53,20 @@ REDDIT_USERNAME=***************************
 
 REDDIT_PASSWORD=***************************
 
-##Advanced Usage:
+## Advanced Usage:
 
 ### Evaluation metrics generation
 
-&nbsp;&nbsp;&nbsp;&nbsp;**python enviro_bot_agents.py evaluate --vdb="./vdb/my_gas_vdb" --out_file="gas_eval" --samples=10**
+&nbsp;&nbsp;&nbsp;&nbsp; **python enviro_bot_agents.py evaluate --vdb="./vdb/my_gas_vdb" --out_file="gas_eval" --samples=10**
 
 ### Pull from the database into an excel file
 
-&nbsp;&nbsp;&nbsp;&nbsp;**python enviro_bot_agents.py pull --vdb="./vdb/my_gas_vdb"**
+&nbsp;&nbsp;&nbsp;&nbsp; **python enviro_bot_agents.py pull --vdb="./vdb/my_gas_vdb"**
 
 ### Chat to vector database  from command line with new dummy posts based on a class and classification
 ### Though recommended to use enviro_bot_chat.py instead.
 
-**python enviro_bot_agents.py chat --vdb="./vdb/my_gas_vdb" --my_class="Viewpoint" --classification="Left Wing"**
+&nbsp;&nbsp;&nbsp;&nbsp; **python enviro_bot_agents.py chat --vdb="./vdb/my_gas_vdb" --my_class="Viewpoint" --classification="Left Wing"**
 
 
 
