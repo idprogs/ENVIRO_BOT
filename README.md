@@ -25,6 +25,8 @@ python enviro_bot_agents.py create --search="gas prices" --vdb="./vdb/my_gas_vdb
 
 streamlit run enviro_bot_chat.py -- --vdb="./vdb/my_gas_vdb"
 
+![Diagram](example_picture.png)
+
 Setup:
 Note this application was developed with Ubuntu on a high performance computer 
 2× AMD EPYC 7702 CPUs (128 cores, 256 threads total) and 7× NVIDIA A100 PCIe 80GB GPUs.
