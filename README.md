@@ -16,7 +16,7 @@ The applications here are ..
 
 ## Example Basic Usage:
 
-### Create a vector database from Reddit posts, assuming you have create a sub direcory ./vdb
+### Create a vector database from Reddit posts, assuming you have already created a sub direcory ./vdb
 
 &nbsp;&nbsp;&nbsp;&nbsp; **python enviro_bot_agents.py create --search="gas prices" --vdb="./vdb/my_gas_vdb"**
 
