@@ -11,19 +11,19 @@ Using this setup, we leveraged local large language models with retrieval-augmen
 
 The applications here are ..
 
-enviro_bot_agent.py     # command line app to create vector database by scraping reddit posts, test with command line chat, run evaluation metrics 
+**enviro_bot_agent.py**     # command line app to create vector database by scraping reddit posts, test with command line chat, run evaluation metrics 
 
-enviro_bot_chat.py           # browser app where you type a Reddit style post (choose from viewpoints and sentiments), to recieve AI simulated comment
+**enviro_bot_chat.py**           # browser app where you type a Reddit style post (choose from viewpoints and sentiments), to recieve AI simulated comment
 
 Example Basic Usage:
 
 # Create a vector database from Reddit posts, assuming you have create a sub direcory ./vdb
 
-python enviro_bot_agents.py create --search="gas prices" --vdb="./vdb/my_gas_vdb"
+**python enviro_bot_agents.py create --search="gas prices" --vdb="./vdb/my_gas_vdb"**
 
 # Chat with the vector database
 
-streamlit run enviro_bot_chat.py -- --vdb="./vdb/my_gas_vdb"
+**streamlit run enviro_bot_chat.py -- --vdb="./vdb/my_gas_vdb"**
 
 ![Diagram](example_picture.png)
 
