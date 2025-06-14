@@ -5,12 +5,9 @@ Here is the source code pertaining to the paper
 Simulating Human Responses to Environmental Messaging
 by Dr Ian Drumm1, Dr Atefeh Tate2, The University of Salford, UK 
 
-The paper describes our ongoing work to implement and evaluate virtual humans whose responses to environmental messaging 
-are influenced by their media diet and social interactions. The project scraped thousands of social media post / comment pairs 
-related to environmental issues, classified them according to viewpoints, and built a vector database of embedded social media interactions
-and associated classification metadata to act as a knowledge source for chatbots.
-Hence, the application leverages local large language models with retrieval-augmented generation
-to create chatbots who gave comments to new Reddit posts based on stereotypical attitudes.
+This work is part of an ongoing project to develop and evaluate virtual humans whose responses to environmental messaging are shaped by their media exposure and social interactions. The project involved scraping thousands of Reddit post/comment pairs related to environmental topics. These were then classified by viewpoint, sentiment, emotion, and other features, and stored in a vector database alongside embedded representations and associated metadata.
+
+Using this setup, we leveraged local large language models with retrieval-augmented generation (RAG) to create chatbots that respond to new Reddit posts with comments reflecting stereotypical attitudes. The classification metadata allowed for fine-grained filtering of the vector database to simulate different personas during response generation.
 
 The applications here are ..
 
