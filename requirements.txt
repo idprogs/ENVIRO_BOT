@@ -1,0 +1,35 @@
+Pillow
+neo4j
+pandas
+python-dotenv
+langgraph
+langchain-community
+langchain-core
+langchain-openai
+streamlit
+praw
+sentence-transformers
+langchain-chroma
+langchain-huggingface
+numba
+langchain-experimental
+yfiles_jupyter_graphs
+pydantic
+plotly
+torch
+mauve-text
+transformers
+nltk
+rouge-score
+pycocoevalcap
+bert-score
+vaderSentiment
+NRCLex
+scipy
+evaluate
+langchain-ollama
+openai
+# The following are often installed as dependencies of the above,
+# but listed for completeness if direct import implies direct dependency.
+# requests # (often a dependency of API clients like praw, openai)
+# numpy # (often a dependency of pandas, torch, etc.)

@@ -1,0 +1,52 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+.env/
+.venv/
+env/
+venv/
+ENV/
+
+# Environment variables
+.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# VSCode settings
+.vscode/
+
+# macOS and Linux system files
+.DS_Store
+*.swp
+
+# Log files
+*.log
+
+# Python package build artifacts
+*.egg-info/
+dist/
+build/
+
+# Model and data cache
+*.ckpt
+*.pt
+*.h5
+
+# Chroma/Vector DBs and SQLite
+vdb/
+*.sqlite3
+*.db
+
+# Streamlit and other cache dirs
+.streamlit/
+.cache/
+__pycache__/
+
+# Node/npm (in case of hybrid JS code)
+node_modules/
+*.tsbuildinfo
