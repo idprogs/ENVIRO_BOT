@@ -25,7 +25,7 @@ The applications here are ..
 
 &nbsp;&nbsp;&nbsp;&nbsp; **streamlit run enviro_bot_chat.py -- --vdb="./vdb/my_gas_vdb"**
 
-
+  
 
 ![Diagram](example_picture.png)
 
