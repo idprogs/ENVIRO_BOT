@@ -1,5 +1,4 @@
 # ENVIRO_BOT
-Source code for Simulating Human Responses to Environmental Messaging
 
 Here is the source code pertaining to the paper
 Simulating Human Responses to Environmental Messaging
