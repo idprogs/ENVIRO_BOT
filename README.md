@@ -35,14 +35,21 @@ Similar performance may be required for database creation with classification, a
 
 For basic inference you will need at least the ability to run models such as LLama3:70B.
 
-Download and install ollama.com
-ollama pull llama3:70b
-ollama pull mistral-nemo
+Download and install ollama.com  
 
-Create a python virtual env
-conda create --name enviro_bot_env python=3.10
-conda activate enviro_bot_env
-pip install -r requirements.txt
+&nbsp;&nbsp;&nbsp;&nbsp; ollama pull llama3:70b  
+
+&nbsp;&nbsp;&nbsp;&nbsp; ollama pull mistral-nemo  
+
+
+Create a python virtual env  
+
+&nbsp;&nbsp;&nbsp;&nbsp; conda create --name enviro_bot_env python=3.10  
+
+&nbsp;&nbsp;&nbsp;&nbsp; conda activate enviro_bot_env  
+
+&nbsp;&nbsp;&nbsp;&nbsp; pip install -r requirements.txt  
+
 
 You will need a Reddit account and create a .env file in the main project directory, with the contents...
 
