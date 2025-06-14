@@ -19,11 +19,11 @@ The applications here are ..
 
 ### Create a vector database from Reddit posts, assuming you have create a sub direcory ./vdb
 
-**python enviro_bot_agents.py create --search="gas prices" --vdb="./vdb/my_gas_vdb"**
+&nbsp;&nbsp;&nbsp;&nbsp; **python enviro_bot_agents.py create --search="gas prices" --vdb="./vdb/my_gas_vdb"**
 
 ### Chat with the vector database
 
-**streamlit run enviro_bot_chat.py -- --vdb="./vdb/my_gas_vdb"**
+&nbsp;&nbsp;&nbsp;&nbsp; **streamlit run enviro_bot_chat.py -- --vdb="./vdb/my_gas_vdb"**
 
 ![Diagram](example_picture.png)
 
