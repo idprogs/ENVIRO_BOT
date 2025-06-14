@@ -47,8 +47,11 @@ pip install -r requirements.txt
 You will need a Reddit account and create a .env file in the main project directory, with the contents...
 
 REDDIT_CLIENT_ID=***************************
+
 REDDIT_CLIENT_SECRET=***************************
+
 REDDIT_USERNAME=***************************
+
 REDDIT_PASSWORD=***************************
 
 Advanced Usage:
