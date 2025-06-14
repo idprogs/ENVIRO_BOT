@@ -15,9 +15,9 @@ The applications here are ..
 
 **enviro_bot_chat.py**           # browser app where you type a Reddit style post (choose from viewpoints and sentiments), to recieve AI simulated comment
 
-##Example Basic Usage:
+## Example Basic Usage:
 
-###Create a vector database from Reddit posts, assuming you have create a sub direcory ./vdb
+### Create a vector database from Reddit posts, assuming you have create a sub direcory ./vdb
 
 **python enviro_bot_agents.py create --search="gas prices" --vdb="./vdb/my_gas_vdb"**
 
@@ -27,7 +27,7 @@ The applications here are ..
 
 ![Diagram](example_picture.png)
 
-##Setup:
+## Setup:
 Note this application was developed with Ubuntu on a high performance computer 
 2× AMD EPYC 7702 CPUs (128 cores, 256 threads total) and 7× NVIDIA A100 PCIe 80GB GPUs.
 Similar performance may be required for database creation with classification, and batch evaluation.
