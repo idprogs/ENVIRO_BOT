@@ -1,0 +1,3 @@
+[2025-06-15 09:46:40] Pull items from database 
+[2025-06-15 09:47:42] Pull items from database 
+[2025-06-15 09:47:56] Data pulled from ./vdb/climate_rag_vdb and saved to chroma_vector_data_filtered.xlsx/csv
