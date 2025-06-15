@@ -348,8 +348,10 @@ def main():
         if args.style:
             additional_filter_criteria["Style"] = args.style.title().strip()
 
-        evalstr=evaluate_data(vdb_path=args.vdb, llm_name=args.llm_name, k=args.k, temperature=args.t, search_type=args.s, metrics_filename=args.out_file, sample_size=args.samples)
+        evalstr=evaluate_data(vdb_path=args.vdb, llm_name=args.llm_name, k=args.k, temperature=args.t, search_type=args.s, metrics_filename=args.out_file, sample_size=args.samples, additional_filter_criteria=additional_filter_criteria)
+
         print(evalstr)
+        
         log_comment(f"Evaluation complete. Results saved to {args.out_file}.xlsx and associated summary statistics file.", file_path='./log.txt')
 
 if __name__ == "__main__":

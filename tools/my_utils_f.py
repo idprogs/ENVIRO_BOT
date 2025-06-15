@@ -813,6 +813,13 @@ def add_to_graph_db(training_set,
 def convert_to_chroma_filter(filter_dict):
     if not filter_dict:
         return None
+    if len(filter_dict) == 1:
+        key, value = next(iter(filter_dict.items()))
+        if isinstance(value, list):
+            return {key: {"$in": value}}
+        return {key: {"$eq": value}}
+
+    # Multiple filters → use $and
     clauses = []
     for key, value in filter_dict.items():
         if isinstance(value, list):
@@ -820,6 +827,17 @@ def convert_to_chroma_filter(filter_dict):
         else:
             clauses.append({key: {"$eq": value}})
     return {"$and": clauses}
+
+def query_filtered_data(vectordb, filter_dict, limit=1000):
+    docs = vectordb.similarity_search(
+        query=".",
+        k=limit,
+        filter=filter_dict
+    )
+    return {
+        "documents": [doc.page_content for doc in docs],
+        "metadatas": [doc.metadata for doc in docs]
+    }
 
 def evaluate_data(
     vdb_path,
@@ -837,6 +855,8 @@ def evaluate_data(
     if additional_filter_criteria is None:
         additional_filter_criteria = {}
 
+    pprint.pprint(additional_filter_criteria)
+
     # Base filter
     train_filter = {"Training_or_Test_Data": "Training"}
     test_filter = {"Training_or_Test_Data": "Test"}
@@ -848,13 +868,18 @@ def evaluate_data(
     train_filter = convert_to_chroma_filter(train_filter)
     test_filter = convert_to_chroma_filter(test_filter)
 
+    pprint.pprint(train_filter)
+    pprint.pprint(test_filter)
+
     my_chain = create_chain3(vdb_path=vdb_path, llm=llm, k=k, search_type=search_type)
     my_chain.retriever.base_retriever.search_kwargs["filter"] = train_filter
     
     embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
     vectordb = Chroma(persist_directory=vdb_path, embedding_function=embeddings)
 
-    test_data_dictionary = vectordb.get(where=test_filter)
+    #test_data_dictionary = vectordb.get(where=test_filter)
+    test_data_dictionary = query_filtered_data(vectordb, test_filter, limit=1000)
+
 
     #pprint.pprint(test_data_dictionary)
 
@@ -876,6 +901,12 @@ def evaluate_data(
     bot_comments_to_post = []
     contexts = []
     ragas_scores = []
+    viewpoints = []
+    emotions = []
+    sentiments = []
+    styles = []
+    test_or_training = []
+    
 
     # sampled_data = test_data
     test_data_size = len(test_data)
@@ -891,6 +922,13 @@ def evaluate_data(
         posts.append(query)
         real_comments_to_post.append(item["Comment"])
         bot_comments_to_post.append(result['result'])
+
+        viewpoints.append(item["Viewpoint"])
+        emotions.append(item["Emotion"])
+        sentiments.append(item["Sentiment"])
+        styles.append(item["Style"])
+        test_or_training.append(item["Training_or_Test_Data"])
+
         contexts.append(handler.get_context())
 
     print("Real comments to post:", len(real_comments_to_post))
@@ -956,7 +994,14 @@ def evaluate_data(
             'gen_surprise': val['gen_surprise'],
             'gen_trust': val['gen_trust'],
             'k': k,
-            'temperature': temperature
+            'temperature': temperature,
+             
+             # Include classification metadata from test_data item
+            'Viewpoint': viewpoints[i],
+            'Emotion': emotions[i],
+            'Sentiment': sentiments[i],
+            'Style': styles[i],
+            'Training_or_Test_Data': test_or_training[i]
         }
         combined_data.append(combined_item)
 
