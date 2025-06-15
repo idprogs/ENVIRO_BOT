@@ -812,7 +812,7 @@ def add_to_graph_db(training_set,
 
 def convert_to_chroma_filter(filter_dict):
     if not filter_dict:
-        return {}
+        return None
     clauses = []
     for key, value in filter_dict.items():
         if isinstance(value, list):
