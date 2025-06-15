@@ -1,6 +1,9 @@
 # Large data files
 *.xlsx
 *.csv
+log.txt
+logDocs.txt
+logPrompts.txt
 
 # Byte-compiled / cache files
 __pycache__/

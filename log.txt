@@ -1,3 +1,27 @@
 [2025-06-15 09:46:40] Pull items from database 
 [2025-06-15 09:47:42] Pull items from database 
 [2025-06-15 09:47:56] Data pulled from ./vdb/climate_rag_vdb and saved to chroma_vector_data_filtered.xlsx/csv
+[2025-06-15 10:11:57] Appending to existing vector database.
+[2025-06-15 10:11:57] Scrape, classify and create vector database  
+[2025-06-15 10:11:57] search_terms=green new deal
+[2025-06-15 10:11:57] vector_db=./vdb/climate_rag_vdb
+[2025-06-15 10:11:57] Scraping Reddit: search green new deal from environment climate sustainability climateskeptics
+[2025-06-15 10:11:57] Searching Reddit for 'green new deal' in subreddits: environment, climate, sustainability, climateskeptics
+[2025-06-15 10:19:39] processing input_list of size=3755
+[2025-06-15 11:28:18] Chat using ./vdb/my_gas_vdb vector database
+[2025-06-15 11:28:29] Applying retriever filter: {'Viewpoint': 'Left Wing', 'Sentiment': 'Supportive'}
+[2025-06-15 11:34:57] Chat using ./vdb/my_gas_vdb vector database
+[2025-06-15 11:35:07] Applying retriever filter: {'$and': [{'Viewpoint': {'$eq': 'Left Wing'}}, {'Sentiment': {'$eq': 'Supportive'}}]}
+[2025-06-15 11:42:14] Chat using ./vdb/my_gas_vdb vector database
+[2025-06-15 11:42:25] Applying retriever filter: {'Viewpoint': {'$eq': 'Left Wing'}, 'Sentiment': {'$eq': 'Supportive'}}
+[2025-06-15 11:44:13] Filtered out 187 duplicates. Keeping 3568 new items.
+[2025-06-15 11:44:21] created vdb at ./vdb/climate_rag_vdb
+[2025-06-15 11:45:43] Appending to existing vector database.
+[2025-06-15 11:45:43] Scrape, classify and create vector database  
+[2025-06-15 11:45:43] search_terms=marine life
+[2025-06-15 11:45:43] vector_db=./vdb/climate_rag_vdb
+[2025-06-15 11:45:43] Scraping Reddit: search marine life from environment climate sustainability climateskeptics
+[2025-06-15 11:45:43] Searching Reddit for 'marine life' in subreddits: environment, climate, sustainability, climateskeptics
+[2025-06-15 11:47:42] Chat using ./vdb/my_gas_vdb vector database
+[2025-06-15 11:47:53] Applying retriever filter: {'$and': [{'Viewpoint': {'$eq': 'Left Wing'}}, {'Sentiment': {'$eq': 'Supportive'}}]}
+[2025-06-15 11:47:56] processing input_list of size=1335

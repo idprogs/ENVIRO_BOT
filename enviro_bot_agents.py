@@ -8,7 +8,7 @@ from langchain_ollama import OllamaLLM
 from tools.my_utils_f import (
     log_comment, some_llm_filter, my_reddit_scrape, evaluate_data,
     create_chain3, add_to_vector_db_with_metadata, getAllDBItems,
-    MyCustomCallbackHandler
+    MyCustomCallbackHandler, convert_to_chroma_filter
 )
 from tools.my_classifiers import get_viewpoint, get_emotion, get_sentiment, get_style, get_training_or_test_data
 import argparse
@@ -175,9 +175,13 @@ def main():
     parser.add_argument('--out_file', default="eval", help='output file name')
     parser.add_argument('--json', default="./data/all_classified.json", help='json to add to database')
     parser.add_argument('--search', default='"wind turbines" OR "wind farms" OR "wind energy" OR "windmills"', help='search terms')
-    parser.add_argument('--subreddits', nargs='+', default=["environment", "climate", "sustainability", "climateskeptics"], help='List of subreddits (space separated)') 
-    parser.add_argument('--my_class', default="Viewpoint", help='Viewpoint, Emotion, Sentiment, Style')
-    parser.add_argument('--classification', default="Left Wing", help='Left Wing, Angry, etc')
+    parser.add_argument('--subreddits', nargs='+', default=["environment", "climate", "sustainability", "climateskeptics"], help='List of subreddits (space separated)')
+    parser.add_argument('--viewpoint', default=None, help='"Left Wing", "Right Wing"')
+    parser.add_argument('--emotion', default=None, help='Happy, Sad, Angry, Fearful, Suprised, etc')
+    parser.add_argument('--sentiment', default=None, help='Supportive, Critical, Sceptical')
+    parser.add_argument('--style', default=None, help='Humorous, Sarcastic, Serious')
+
+
     args = parser.parse_args()
     
     if args.action == 'create':
@@ -274,7 +278,7 @@ def main():
         # Allows interactive chat using a specified vector database, filtering by class and classification.
         vdb_path = args.vdb
         log_comment(
-            f"Chat using {vdb_path} vector database with class {args.my_class} and classification {args.classification}",
+            f"Chat using {vdb_path} vector database",
             file_path='./log.txt'
         )
 
@@ -282,7 +286,23 @@ def main():
         my_chain = create_chain3(vdb_path=vdb_path, llm=use_llm)
 
         # Set the filter criteria for the retriever
-        filter_criteria = {args.my_class: args.classification}
+        filter_criteria = {}
+        if args.viewpoint:
+            filter_criteria["Viewpoint"] = args.viewpoint.title().strip()
+        if args.sentiment:
+            filter_criteria["Sentiment"] = args.sentiment.title().strip()
+        if args.emotion:
+            filter_criteria["Emotion"] = args.emotion.title().strip()
+        if args.style:
+            filter_criteria["Style"] = args.style.title().strip()
+
+        filter_criteria = convert_to_chroma_filter(filter_criteria)
+
+        log_comment(
+            f"Applying retriever filter: {filter_criteria}",
+            file_path='./log.txt'
+        )
+
         my_chain.retriever.base_retriever.search_kwargs["filter"] = filter_criteria
 
         # Interactive loop
@@ -316,6 +336,18 @@ def main():
     elif args.action == 'evaluate':
         # Evaluates the performance of the RAG system using a predefined test set and metrics.
         log_comment("Evaluate the RAG system ", file_path='./log.txt')
+
+        # Set the filter criteria for evaluation
+        additional_filter_criteria = {}
+        if args.viewpoint:
+            additional_filter_criteria["Viewpoint"] = args.viewpoint.title().strip()
+        if args.sentiment:
+            additional_filter_criteria["Sentiment"] = args.sentiment.title().strip()
+        if args.emotion:
+            additional_filter_criteria["Emotion"] = args.emotion.title().strip()
+        if args.style:
+            additional_filter_criteria["Style"] = args.style.title().strip()
+
         evalstr=evaluate_data(vdb_path=args.vdb, llm_name=args.llm_name, k=args.k, temperature=args.t, search_type=args.s, metrics_filename=args.out_file, sample_size=args.samples)
         print(evalstr)
         log_comment(f"Evaluation complete. Results saved to {args.out_file}.xlsx and associated summary statistics file.", file_path='./log.txt')

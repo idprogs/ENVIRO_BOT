@@ -810,18 +810,51 @@ def add_to_graph_db(training_set,
     except Exception as e:
         print(f"Creating graph database failed: {e}")
 
-def evaluate_data(vdb_path, llm_name="llama3:70b", temperature=0.3, k=1, search_type="mmr", sample_size=10, metrics_filename="default_metrics"):
-    #horrible hack
+def convert_to_chroma_filter(filter_dict):
+    if not filter_dict:
+        return {}
+    clauses = []
+    for key, value in filter_dict.items():
+        if isinstance(value, list):
+            clauses.append({key: {"$in": value}})
+        else:
+            clauses.append({key: {"$eq": value}})
+    return {"$and": clauses}
+
+def evaluate_data(
+    vdb_path,
+    llm_name="llama3:70b",
+    temperature=0.3,
+    k=1,
+    search_type="mmr",
+    sample_size=10,
+    metrics_filename="default_metrics",
+    additional_filter_criteria=None
+):
     handler= MyCustomCallbackHandler()
     llm = Ollama(model=llm_name,temperature=temperature, callbacks=[handler])
 
+    if additional_filter_criteria is None:
+        additional_filter_criteria = {}
+
+    # Base filter
+    train_filter = {"Training_or_Test_Data": "Training"}
+    test_filter = {"Training_or_Test_Data": "Test"}
+
+    # Merge with additional criteria
+    train_filter.update(additional_filter_criteria)
+    test_filter.update(additional_filter_criteria)
+
+    train_filter = convert_to_chroma_filter(train_filter)
+    test_filter = convert_to_chroma_filter(test_filter)
+
     my_chain = create_chain3(vdb_path=vdb_path, llm=llm, k=k, search_type=search_type)
-    my_chain.retriever.base_retriever.search_kwargs["filter"] = {"Training_or_Test_Data": "Training"}
+    my_chain.retriever.base_retriever.search_kwargs["filter"] = train_filter
     
     embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
     vectordb = Chroma(persist_directory=vdb_path, embedding_function=embeddings)
 
-    test_data_dictionary = vectordb.get(where={"Training_or_Test_Data": "Test"})
+    test_data_dictionary = vectordb.get(where=test_filter)
 
     #pprint.pprint(test_data_dictionary)
 

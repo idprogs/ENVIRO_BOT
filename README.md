@@ -74,7 +74,7 @@ REDDIT_PASSWORD=***************************
 ### Chat to vector database  from command line with new dummy posts based on a class and classification
 Though recommended to use enviro_bot_chat.py instead.
 
-&nbsp;&nbsp;&nbsp;&nbsp; **python enviro_bot_agents.py chat --vdb="./vdb/my_gas_vdb" --my_class="Viewpoint" --classification="Left Wing"**
+&nbsp;&nbsp;&nbsp;&nbsp; **python enviro_bot_agents.py chat --vdb="./vdb/my_gas_vdb" --viewpoint="Left Wing" --sentiment=Supportive**
 
 
 
