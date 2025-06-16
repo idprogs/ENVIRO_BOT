@@ -64,7 +64,7 @@ def run_scrape(search, subreddit):
         "python", "enviro_bot_agents.py", "create",
         f"--search={search}",
         f"--vdb={VDB_NAME}",
-        f"--s={subreddit}"
+        f"--subreddit={subreddit}"
     ]
     start_time = time.time()
     log_comment(f"[{datetime.now().strftime('%H:%M:%S')}] Running: {' '.join(args)}", file_path='./log.txt')

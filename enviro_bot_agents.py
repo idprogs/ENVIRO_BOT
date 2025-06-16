@@ -176,6 +176,7 @@ def main():
     parser.add_argument('--json', default="./data/all_classified.json", help='json to add to database')
     parser.add_argument('--search', default='"wind turbines" OR "wind farms" OR "wind energy" OR "windmills"', help='search terms')
     parser.add_argument('--subreddits', nargs='+', default=["environment", "climate", "sustainability", "climateskeptics"], help='List of subreddits (space separated)')
+    parser.add_argument('--subreddit', default=None, help='Single subreddit to override the default subreddit list')
     parser.add_argument('--viewpoint', default=None, help='"Left Wing", "Right Wing"')
     parser.add_argument('--emotion', default=None, help='Happy, Sad, Angry, Fearful, Suprised, etc')
     parser.add_argument('--sentiment', default=None, help='Supportive, Critical, Sceptical')
@@ -187,7 +188,10 @@ def main():
     if args.action == 'create':
         # Scrapes data, classifies it, and creates/populates a vector database.
         search_terms = args.search
-        search_subreddits=args.subreddits
+        if args.subreddit:
+            search_subreddits = [args.subreddit]
+        else:
+            search_subreddits = args.subreddits
         vdb_path=args.vdb
         if args.delete_old_vdb:
             log_comment("Deleting and recreating the vector database.", file_path='./log.txt')
